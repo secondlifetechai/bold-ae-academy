@@ -49,7 +49,7 @@ const CertificateDisplay = async () => {
                       </span>
                       <div className="bg-[#002157] p-6 px-16">
                         <img
-                          src="/photos/c1.PNG"
+                          src="/photos/c1.png"
                           alt={`${course.title} thumbnail`}
                           className="w-lg"
                         />
@@ -68,7 +68,7 @@ const CertificateDisplay = async () => {
                           </span>
                           <div className="bg-[#002157] p-6 px-16">
                             <img
-                              src="/photos/c1.PNG"
+                              src="/photos/c1.png"
                               alt={`${course.title} thumbnail`}
                               className="w-lg"
                             />
