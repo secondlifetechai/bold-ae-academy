@@ -36,7 +36,6 @@ const CertificateDisplay = async () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <Suspense fallback={<div>Loading...</div>}>
             {courses.map((course) => {
-              const img = course?.image?.url
               return (
                 <Fragment key={course.id}>
                   {course?.curriculum?.length > 0 ? (
@@ -48,7 +47,11 @@ const CertificateDisplay = async () => {
                         {course.status == 'AVAILABLE' ? 'DISPONIBLE' : 'DISPONIBLE BIENTÔT'}
                       </span>
                       <div className="bg-[#002157] p-6 px-16">
-                        <img src={`${img}`} alt={`${course.title} thumbnail`} className="w-lg" />
+                        <img
+                          src={course?.image?.url.replace('.png', '.PNG')}
+                          alt={`${course.title} thumbnail`}
+                          className="w-lg"
+                        />
                         <div className="flex justify-between items-center mt-10">
                           <span className="text-gray-300 font-medium">{course.title}</span>
                           <ScreenShareIcon className="text-gray-300 font-light" size={40} />
@@ -64,7 +67,7 @@ const CertificateDisplay = async () => {
                           </span>
                           <div className="bg-[#002157] p-6 px-16">
                             <img
-                              src={`${img}`}
+                              src={course?.image?.url.replace('.png', '.PNG')}
                               alt={`${course.title} thumbnail`}
                               className="w-lg"
                             />
