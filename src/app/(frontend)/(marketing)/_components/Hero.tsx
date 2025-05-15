@@ -6,7 +6,7 @@ function Hero() {
           <div className="absolute top-16 md:top-24 text-gray-300 w-48 text-center font-light leading-6 mr-16 md:mr-0">
             <p className="text-[17px]">Formez-vous pour réussir dans l'immobilier international</p>
           </div>
-          <img src="/photos/p1.png" alt="" className="w-xl pb-0 mb-0" />
+          <img src={'/photos/p1.png'.toLowerCase()} alt="" className="w-xl pb-0 mb-0" />
         </div>
       </div>
     </section>
