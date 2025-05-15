@@ -36,6 +36,7 @@ const CertificateDisplay = async () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <Suspense fallback={<div>Loading...</div>}>
             {courses.map((course) => {
+              const imgg = course?.image?.url
               return (
                 <Fragment key={course.id}>
                   {course?.curriculum?.length > 0 ? (
@@ -48,7 +49,7 @@ const CertificateDisplay = async () => {
                       </span>
                       <div className="bg-[#002157] p-6 px-16">
                         <img
-                          src={course?.image?.url.replace('.png', '.PNG')}
+                          src="/photos/c1.PNG"
                           alt={`${course.title} thumbnail`}
                           className="w-lg"
                         />
@@ -67,7 +68,7 @@ const CertificateDisplay = async () => {
                           </span>
                           <div className="bg-[#002157] p-6 px-16">
                             <img
-                              src={course?.image?.url.replace('.png', '.PNG')}
+                              src="/photos/c1.PNG"
                               alt={`${course.title} thumbnail`}
                               className="w-lg"
                             />

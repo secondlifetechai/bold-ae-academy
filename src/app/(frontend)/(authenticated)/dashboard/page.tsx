@@ -90,7 +90,11 @@ const page = async () => {
                         {course.status == 'AVAILABLE' ? 'DISPONIBLE' : 'DISPONIBLE BIENTÔT'}
                       </span>
                       <div className="bg-[#002157] p-6 px-16">
-                        <img src={`${img}`} alt={`${course.title} thumbnail`} className="w-lg" />
+                        <img
+                          src="/photos/c1.PNG"
+                          alt={`${course.title} thumbnail`}
+                          className="w-lg"
+                        />
                         <div className="flex justify-between items-center mt-10">
                           <span className="text-gray-300 font-medium">{course.title}</span>
                           <ScreenShareIcon className="text-gray-300 font-light" size={40} />
@@ -106,7 +110,7 @@ const page = async () => {
                           </span>
                           <div className="bg-[#002157] p-6 px-16">
                             <img
-                              src={`${img}`}
+                              src="/photos/c1.PNG"
                               alt={`${course.title} thumbnail`}
                               className="w-lg"
                             />
