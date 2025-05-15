@@ -1,0 +1,63 @@
+'use client'
+
+import { Course } from '@/payload-types'
+import { useEffect, useRef } from 'react'
+import { HiVideoCamera, HiPencilAlt, HiFlag } from 'react-icons/hi'
+
+export default function Curriculum({
+  course,
+  currentProgress,
+}: {
+  course: Course
+  currentProgress: number
+}) {
+  const currentRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (currentRef.current) {
+      currentRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }
+  }, [])
+
+  return (
+    <div className="flex flex-col gap-4 max-h-[40rem] overflow-y-auto mt-4">
+      {course?.curriculum?.map((block, idx) => {
+        const isCurrent = idx === currentProgress
+
+        const baseClass =
+          'p-4 border bg-gray-900 transition-all duration-300 ease-in-out cursor-pointer'
+        const borderClass = isCurrent ? 'border-2 border-blue-500' : 'border-gray-700'
+
+        const commonProps = {
+          className: `${baseClass} ${borderClass}`,
+          ref: isCurrent ? currentRef : undefined,
+        }
+
+        if (block.blockType === 'text') {
+          return (
+            <div key={idx} {...commonProps}>
+              <div className="text-blue-400 font-medium flex items-center gap-2">
+                <HiVideoCamera className="text-xl" />
+                Sujet: {block.title}
+              </div>
+              <div className="text-sm text-gray-400">Durée: {block?.topics?.length} sujettes</div>
+            </div>
+          )
+        }
+
+        if (block?.blockType === 'finish') {
+          return (
+            <div key={idx} {...commonProps}>
+              <div className="text-blue-400 font-medium flex items-center gap-2">
+                <HiFlag className="text-xl" />
+                Certificate
+              </div>
+            </div>
+          )
+        }
+
+        return null
+      })}
+    </div>
+  )
+}

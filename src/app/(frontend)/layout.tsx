@@ -1,19 +1,20 @@
-import React from 'react'
 import './styles.css'
+import React, { ReactElement, ReactNode } from 'react'
 
-export const metadata = {
-  description: 'A blank template using Payload in a Next.js app.',
-  title: 'Payload Blank Template',
+interface RootLayoutProps {
+  children: ReactNode
 }
 
-export default async function RootLayout(props: { children: React.ReactNode }) {
-  const { children } = props
-
+export default function RootLayout({ children }: RootLayoutProps): ReactElement {
   return (
-    <html lang="en">
-      <body>
-        <main>{children}</main>
-      </body>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://api.fontshare.com/css?f%5B%5D=switzer@400,500,600,700&amp;display=swap"
+        />
+      </head>
+      <body className="antialiased overflow-x-hidden bg-[#002157]">{children}</body>
     </html>
   )
 }
