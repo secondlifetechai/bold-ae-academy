@@ -16,7 +16,10 @@ function StartCourse() {
           </div>
           <div className="flex flex-col gap-2 justify-center items-center">
             <img src="/photos/p2.png" alt="" className="w-xl" />
-            <Link href="/about">
+            <Link
+              href="/about"
+              className="inline-flex justify-center items-center py-3 px-5 rounded-lg bg-[#002157] w-52"
+            >
               <strong className="text-slate-300 text-xl">EN SAVOIR PLUS</strong>
             </Link>
           </div>

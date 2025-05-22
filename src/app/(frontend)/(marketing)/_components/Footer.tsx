@@ -64,13 +64,18 @@ const Footer = () => {
               <h4 className="text-lg mb-6 text-white">PAGES</h4>
               <ul className="space-y-4 pl-2">
                 <li>
+                  <Link href="/" className="text-gray-300 hover:text-white text-sm">
+                    Maison
+                  </Link>
+                </li>
+                <li>
                   <Link href="/about" className="text-gray-300 hover:text-white text-sm">
                     À propos de nous
                   </Link>
                 </li>
                 <li>
-                  <Link href="/#contact" className="text-gray-300 hover:text-white text-sm">
-                    Contactez-nous
+                  <Link href="/dashboard" className="text-gray-300 hover:text-white text-sm">
+                    Tableau De Bord
                   </Link>
                 </li>
               </ul>
@@ -84,8 +89,12 @@ const Footer = () => {
               <h4 className="text-lg mb-6 text-white">Information</h4>
               <ul className="space-y-4 pl-2">
                 <li>
-                  <Link href="#" className="text-gray-300 hover:text-white text-sm">
-                    À propos de nous
+                  <Link
+                    href="http://samuproperties.ca/"
+                    className="text-gray-300 hover:text-white text-sm"
+                    target="_blank"
+                  >
+                    Samu Propriétés
                   </Link>
                 </li>
                 <li>

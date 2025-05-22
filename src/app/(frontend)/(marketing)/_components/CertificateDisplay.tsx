@@ -24,6 +24,7 @@ const CertificateDisplay = async () => {
       collection: 'courses',
       limit: 10,
       overrideAccess: false,
+      sort: 'createdAt',
     })
     courses = coursesRes.docs
   } catch (e) {
