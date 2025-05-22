@@ -33,6 +33,7 @@ const page = async () => {
       limit: 10,
       overrideAccess: false,
       user: user,
+      sort: 'createdAt',
     })
     courses = coursesRes.docs
   } catch (e) {
@@ -87,7 +88,7 @@ const page = async () => {
                       className="flex flex-col gap-3 justify-center items-center"
                     >
                       <span className="text-gray-300 font-medium">
-                        {course.status == 'AVAILABLE' ? 'DISPONIBLE' : 'DISPONIBLE BIENTÔT'}
+                        {course.status == 'AVAILABLE' ? 'DISPONIBLE' : 'BIENTÔT DISPONIBLE'}
                       </span>
                       <div className="bg-[#002157] p-6 px-16">
                         <img
@@ -106,7 +107,7 @@ const page = async () => {
                       <AlertDialogTrigger asChild>
                         <div className="flex flex-col gap-3 justify-center items-center cursor-pointer">
                           <span className="text-gray-300 font-medium">
-                            {course.status == 'AVAILABLE' ? 'DISPONIBLE' : 'DISPONIBLE BIENTÔT'}
+                            {course.status == 'AVAILABLE' ? 'DISPONIBLE' : 'BIENTÔT DISPONIBLE'}
                           </span>
                           <div className="bg-[#002157] p-6 px-16">
                             <img
@@ -126,7 +127,7 @@ const page = async () => {
                           <AlertDialogTitle className="flex justify-center">
                             <div className="flex flex-col justify-center items-center gap-3">
                               <LockIcon className="text-gray-300 font-light" size={40} />
-                              DISPONIBLE BIENTÔT
+                              BIENTÔT DISPONIBLE
                             </div>
                           </AlertDialogTitle>
                           <AlertDialogDescription className="text-gray-300">
