@@ -63,6 +63,11 @@ function Header() {
               </Link>
             </li>
             <li>
+              <Link href="/about" className="block py-2 px-3 text-slate-200 rounded md:p-0">
+                À PROPOS DE NOUS
+              </Link>
+            </li>
+            <li>
               <Link href="/dashboard" className="block py-2 px-3 text-slate-200 rounded md:p-0">
                 TABLEAU DE BORD
               </Link>

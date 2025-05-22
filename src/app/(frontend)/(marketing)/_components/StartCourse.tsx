@@ -16,7 +16,9 @@ function StartCourse() {
           </div>
           <div className="flex flex-col gap-2 justify-center items-center">
             <img src="/photos/p2.png" alt="" className="w-xl" />
-            <strong className="text-slate-300 text-xl">A PROPOS DE NOUS</strong>
+            <Link href="/about">
+              <strong className="text-slate-300 text-xl">EN SAVOIR PLUS</strong>
+            </Link>
           </div>
         </div>
       </div>
