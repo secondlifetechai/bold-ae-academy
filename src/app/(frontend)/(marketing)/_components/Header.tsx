@@ -14,7 +14,7 @@ function Header() {
           <img src={'/logos/logo.png'} alt="Samu Properties Logo" className="w-28" />
         </Link>
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-          <a href={`mailto:support@bold-ae-academy.com`} target="_blank">
+          <a href="mailto:support@bold-ae-academy.com" target="_blank">
             <Mail className="text-slate-300 text-center mx-6 my-2 text-2xl" />
           </a>
           <a href="tel:+18739931780">

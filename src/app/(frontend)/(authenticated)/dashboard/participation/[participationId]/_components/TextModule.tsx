@@ -72,7 +72,7 @@ export default function TextModule({
                   <div className="font-medium text-xl mb-3 text-center">{tp.topic}</div>
 
                   {tp?.content?.root?.children?.map((child: any, i: number) => {
-                    return <p key={i}>{child.children[0].text}</p>
+                    return <p key={i}>{child?.length > 0 ? child?.children[0].text : ''}</p>
                   })}
                 </div>
               )
@@ -89,7 +89,7 @@ export default function TextModule({
           </TabsContent>
           <TabsContent value="quiz">
             {module?.quizes?.length > 0 ? (
-              <QuizModule quizes={module.quizes[0]} />
+              <QuizModule quizes={module?.quizes[0]} />
             ) : (
               <div
                 className={`flex justify-center items-center bg-[#002157] py-6 px-96 text-gray-300 pb-14 mt-3 h-72 mx-auto`}
