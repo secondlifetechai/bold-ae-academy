@@ -1,6 +1,8 @@
 import type { CollectionConfig } from 'payload'
 import { TextBlock } from './Blocks/TextBlock'
 import { FinishBlock } from './Blocks/FinishBlock'
+import { QuizBlock } from './Blocks/QuizBlock'
+import { VideoBlock } from './Blocks/VideoBlock'
 
 export const Courses: CollectionConfig = {
   slug: 'courses',
@@ -55,7 +57,7 @@ export const Courses: CollectionConfig = {
       label: 'Curriculum',
       type: 'blocks',
       required: false,
-      blocks: [TextBlock, FinishBlock],
+      blocks: [TextBlock, VideoBlock, QuizBlock, FinishBlock],
     },
   ],
 }

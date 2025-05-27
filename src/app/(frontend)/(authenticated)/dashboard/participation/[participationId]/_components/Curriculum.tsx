@@ -45,6 +45,30 @@ export default function Curriculum({
           )
         }
 
+        if (block.blockType === 'video') {
+          return (
+            <div key={idx} {...commonProps}>
+              <div className="text-teal-400 font-medium flex items-center gap-2">
+                <HiVideoCamera className="text-xl" />
+                Video: {block.title}
+              </div>
+              <div className="text-sm text-gray-400">Duration: {block.duration} min</div>
+            </div>
+          )
+        }
+
+        if (block.blockType === 'quiz') {
+          return (
+            <div key={idx} {...commonProps}>
+              <div className="text-yellow-400 font-medium flex items-center gap-2">
+                <HiPencilAlt className="text-xl" />
+                Quiz: {block.title}
+              </div>
+              <div className="text-sm text-gray-400">Questions: {block.questions?.length || 0}</div>
+            </div>
+          )
+        }
+
         if (block?.blockType === 'finish') {
           return (
             <div key={idx} {...commonProps}>

@@ -3,11 +3,10 @@
 import { Participation } from '@/payload-types'
 import { useState } from 'react'
 import { markProgress } from '../_actions/markProgress'
-import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import QuizModule from './QuizModule'
-import { color } from 'framer-motion'
+import NextButton from './NextButton'
+import { RichText } from '@/components/RichText'
 
 export default function TextModule({
   module,
@@ -58,8 +57,8 @@ export default function TextModule({
             <TabsTrigger value="content" className="cursor-pointer">
               Content
             </TabsTrigger>
-            <TabsTrigger value="quiz" className="cursor-pointer">
-              Quiz
+            <TabsTrigger value="download" className="cursor-pointer">
+              Download
             </TabsTrigger>
           </TabsList>
           <TabsContent value="content">
@@ -71,9 +70,9 @@ export default function TextModule({
                 >
                   <div className="font-medium text-xl mb-3 text-center">{tp.topic}</div>
 
-                  {tp?.content?.root?.children?.map((child: any, i: number) => {
-                    return <p key={i}>{child?.length > 0 ? child?.children[0].text : ''}</p>
-                  })}
+                  <div>
+                    <RichText data={tp?.content} />
+                  </div>
                 </div>
               )
             })}
@@ -87,20 +86,22 @@ export default function TextModule({
               </Button>
             </div>
           </TabsContent>
-          <TabsContent value="quiz">
-            {module?.quizes?.length > 0 ? (
-              <QuizModule quizes={module?.quizes[0]} />
-            ) : (
-              <div
-                className={`flex justify-center items-center bg-[#002157] py-6 px-96 text-gray-300 pb-14 mt-3 h-72 mx-auto`}
-              >
-                <div className="font-medium text-xl mb-3 text-center">
-                  Aucun quiz ajouté pour le moment!
-                </div>
+          <TabsContent value="download">
+            <div
+              className={`flex justify-center items-center bg-[#002157] py-6 px-96 text-gray-300 pb-14 mt-3 h-72 mx-auto`}
+            >
+              <div className="font-medium text-xl mb-3 text-center">
+                <Button className="py-2 px-6 text-xl font-bold text-center text-slate-300 rounded-lg bg-[#1c316a] hover:bg-[#0021578f] mt-2 cursor-pointer">
+                  Télécharger le cours
+                </Button>
               </div>
-            )}
+            </div>
           </TabsContent>
         </Tabs>
+      </div>
+      <div className="flex justify-between mt-10">
+        <div></div>
+        <NextButton loading={loading} text="Section suivante" onClick={handleNextModule} />
       </div>
     </section>
   )

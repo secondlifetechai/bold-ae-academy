@@ -4,7 +4,7 @@ import React from 'react'
 import { getUser } from '../../../_actions/getUser'
 import { Course, Participation } from '@/payload-types'
 import { notFound } from 'next/navigation'
-import { HiArrowLeft } from 'react-icons/hi'
+import { HiArrowLeft, HiPencilAlt, HiVideoCamera } from 'react-icons/hi'
 import Link from 'next/link'
 import { ChevronDown } from 'lucide-react'
 import ParticipationButton from '../../_components/ParticipationButton'
@@ -84,6 +84,32 @@ const CoursePage = async ({ params }: any) => {
                     <strong>
                       <ChevronDown className="font-bold text-gray-200" size={30} />
                     </strong>
+                  </div>
+                )
+              }
+
+              if (block.blockType === 'video') {
+                return (
+                  <div key={idx} className="p-4 border border-gray-700 bg-gray-900">
+                    <div className="text-teal-400 font-medium flex items-center gap-2">
+                      <HiVideoCamera className="text-xl" />
+                      Video: {block.title}
+                    </div>
+                    <div className="text-sm text-gray-400">Duration: {block.duration} min</div>
+                  </div>
+                )
+              }
+
+              if (block.blockType === 'quiz') {
+                return (
+                  <div key={idx} className="p-4 border border-gray-700 bg-gray-900">
+                    <div className="text-yellow-400 font-medium flex items-center gap-2">
+                      <HiPencilAlt className="text-xl" />
+                      Quiz: {block.title}
+                    </div>
+                    <div className="text-sm text-gray-400">
+                      Questions: {block.questions?.length || 0}
+                    </div>
                   </div>
                 )
               }

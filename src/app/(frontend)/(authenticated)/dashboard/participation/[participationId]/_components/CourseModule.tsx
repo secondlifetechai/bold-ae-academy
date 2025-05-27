@@ -2,6 +2,9 @@
 
 import { Participation } from '@/payload-types'
 import TextModule from './TextModule'
+import VideoModule from './VideoModule'
+import FinishModule from './FinishModule'
+import QuizModule from './QuizModule'
 
 interface ModuleProps {
   module: any
@@ -15,8 +18,12 @@ export default function CourseModule({ module, participation, onCompleted }: Mod
   switch (module.blockType) {
     case 'text':
       return <TextModule participation={participation} module={module} onCompleted={onCompleted} />
+    case 'video':
+      return <VideoModule participation={participation} module={module} onCompleted={onCompleted} />
+    case 'quiz':
+      return <QuizModule participation={participation} module={module} onCompleted={onCompleted} />
     case 'finish':
-      return 'Finish Module'
+      return <FinishModule participation={participation} />
     default:
       return <div>Unknown module type</div>
   }

@@ -1,6 +1,7 @@
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { ContentWithMedia } from '@/blocks/ContentWithMedia/config'
+import { TableOfContents } from '@/blocks/TableOfContents/config'
+import { BlocksFeature, FixedToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
 import { Block } from 'payload'
-import { QuizBlock } from './QuizBlock'
 
 export const TextBlock: Block = {
   slug: 'text',
@@ -31,17 +32,23 @@ export const TextBlock: Block = {
           name: 'content',
           label: 'Content',
           type: 'richText',
-          editor: lexicalEditor({}),
+          editor: lexicalEditor({
+            features: ({ defaultFeatures }) => [
+              ...defaultFeatures,
+              BlocksFeature({
+                blocks: [ContentWithMedia, TableOfContents],
+              }),
+              FixedToolbarFeature(),
+            ],
+          }),
           required: true,
         },
+        {
+          name: 'blocks',
+          type: 'blocks',
+          blocks: [ContentWithMedia, TableOfContents],
+        },
       ],
-    },
-    {
-      name: 'quizes',
-      label: 'Quizes',
-      type: 'blocks',
-      required: false,
-      blocks: [QuizBlock],
     },
   ],
 }

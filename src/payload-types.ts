@@ -228,29 +228,36 @@ export interface Course {
                     };
                     [k: string]: unknown;
                   };
+                  blocks?: (ContentWithMedia | TableOfContents)[] | null;
                   id?: string | null;
-                }[]
-              | null;
-            quizes?:
-              | {
-                  title: string;
-                  questions: {
-                    question: string;
-                    answers: {
-                      answer: string;
-                      true?: boolean | null;
-                      id?: string | null;
-                    }[];
-                    id?: string | null;
-                  }[];
-                  id?: string | null;
-                  blockName?: string | null;
-                  blockType: 'quiz';
                 }[]
               | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'text';
+          }
+        | {
+            title: string;
+            duration: number;
+            playerURL: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'video';
+          }
+        | {
+            title: string;
+            questions: {
+              question: string;
+              answers: {
+                answer: string;
+                true?: boolean | null;
+                id?: string | null;
+              }[];
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'quiz';
           }
         | {
             template: string;
@@ -262,6 +269,48 @@ export interface Course {
     | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContentWithMedia".
+ */
+export interface ContentWithMedia {
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  image?: (string | null) | Media;
+  textPosition?: ('Left' | 'Right') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contentWithMedia';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TableOfContents".
+ */
+export interface TableOfContents {
+  contents?:
+    | {
+        header?: string | null;
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'tableOfContents';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -424,31 +473,42 @@ export interface CoursesSelect<T extends boolean = true> {
                 | {
                     topic?: T;
                     content?: T;
-                    id?: T;
-                  };
-              quizes?:
-                | T
-                | {
-                    quiz?:
+                    blocks?:
                       | T
                       | {
-                          title?: T;
-                          questions?:
-                            | T
-                            | {
-                                question?: T;
-                                answers?:
-                                  | T
-                                  | {
-                                      answer?: T;
-                                      true?: T;
-                                      id?: T;
-                                    };
-                                id?: T;
-                              };
-                          id?: T;
-                          blockName?: T;
+                          contentWithMedia?: T | ContentWithMediaSelect<T>;
+                          tableOfContents?: T | TableOfContentsSelect<T>;
                         };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        video?:
+          | T
+          | {
+              title?: T;
+              duration?: T;
+              playerURL?: T;
+              id?: T;
+              blockName?: T;
+            };
+        quiz?:
+          | T
+          | {
+              title?: T;
+              questions?:
+                | T
+                | {
+                    question?: T;
+                    answers?:
+                      | T
+                      | {
+                          answer?: T;
+                          true?: T;
+                          id?: T;
+                        };
+                    id?: T;
                   };
               id?: T;
               blockName?: T;
@@ -463,6 +523,32 @@ export interface CoursesSelect<T extends boolean = true> {
       };
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContentWithMedia_select".
+ */
+export interface ContentWithMediaSelect<T extends boolean = true> {
+  content?: T;
+  image?: T;
+  textPosition?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TableOfContents_select".
+ */
+export interface TableOfContentsSelect<T extends boolean = true> {
+  contents?:
+    | T
+    | {
+        header?: T;
+        link?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
