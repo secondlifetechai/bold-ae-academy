@@ -205,6 +205,7 @@ export interface Course {
   title: string;
   description: string;
   image: string | Media;
+  dowload?: (string | null) | Media;
   status: 'AVAILABLE' | 'UNAVAILABLE';
   curriculum?:
     | (
@@ -460,6 +461,7 @@ export interface CoursesSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   image?: T;
+  dowload?: T;
   status?: T;
   curriculum?:
     | T

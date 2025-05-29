@@ -14,7 +14,7 @@ export default function NextButton({
   return (
     <button
       onClick={onClick}
-      className="bg-teal-500 relative text-gray-200 rounded-md p-2 cursor-pointer"
+      className="bg-teal-500 relative text-gray-200 rounded-md p-2 cursor-pointer px-5"
       disabled={loading}
     >
       {text}{' '}

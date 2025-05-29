@@ -44,6 +44,13 @@ export const Courses: CollectionConfig = {
       required: true,
     },
     {
+      name: 'dowload',
+      label: 'Download',
+      type: 'relationship',
+      relationTo: 'media',
+      required: false,
+    },
+    {
       name: 'status',
       type: 'select',
       options: [

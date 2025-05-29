@@ -28,9 +28,9 @@ export default function FinishModule({ participation }: { participation: Partici
 
   return (
     <div className="w-full flex flex-col gap-6">
-      <h1 className="text-2xl font-bold">Congratulations!</h1>
-      <p>You have completed the course.</p>
-      <NextButton text="Download Certificate" onClick={handlePrint} loading={loading} />
+      <h1 className="text-2xl font-bold">Félicitations!</h1>
+      <p>Vous avez terminé le cours.</p>
+      <NextButton text="Télécharger le certificat" onClick={handlePrint} loading={loading} />
     </div>
   )
 }

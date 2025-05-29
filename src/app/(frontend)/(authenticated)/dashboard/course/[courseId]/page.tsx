@@ -4,11 +4,11 @@ import React from 'react'
 import { getUser } from '../../../_actions/getUser'
 import { Course, Participation } from '@/payload-types'
 import { notFound } from 'next/navigation'
-import { HiArrowLeft, HiPencilAlt, HiVideoCamera } from 'react-icons/hi'
+import { HiArrowLeft } from 'react-icons/hi'
 import Link from 'next/link'
-import { ChevronDown } from 'lucide-react'
 import ParticipationButton from '../../_components/ParticipationButton'
 import StartCourseButton from './_components/StartCourseButton'
+import { ChooseBlock } from './_components/ChooseBlock'
 
 interface CoursePageProps {
   params: { courseId: string }
@@ -66,55 +66,13 @@ const CoursePage = async ({ params }: any) => {
             className="inline-flex items-center gap-2 text-lg text-gray-300 hover:text-white transition"
           >
             <HiArrowLeft className="text-lg" />
-            Back to Dashboard
+            Retour au tableau de bord
           </Link>
         </div>
 
         <div className="flex flex-col gap-3 justify-center items-center pt-10">
           <strong className="text-slate-300 text-xl">{course.title}</strong>
-          <div className="flex flex-col gap-5 w-3xl md:w-full mt-3">
-            {course?.curriculum?.map((block, idx) => {
-              if (block.blockType === 'text') {
-                return (
-                  <div
-                    key={idx}
-                    className={`flex justify-between w-1/2 mx-auto text-gray-300 text-2xl ${course?.curriculum && idx == course?.curriculum?.length - 1 ? '' : 'border-0 border-b-2 border-b-gray-400 py-3'}`}
-                  >
-                    <div>{block.title}</div>
-                    <strong>
-                      <ChevronDown className="font-bold text-gray-200" size={30} />
-                    </strong>
-                  </div>
-                )
-              }
-
-              if (block.blockType === 'video') {
-                return (
-                  <div key={idx} className="p-4 border border-gray-700 bg-gray-900">
-                    <div className="text-teal-400 font-medium flex items-center gap-2">
-                      <HiVideoCamera className="text-xl" />
-                      Video: {block.title}
-                    </div>
-                    <div className="text-sm text-gray-400">Duration: {block.duration} min</div>
-                  </div>
-                )
-              }
-
-              if (block.blockType === 'quiz') {
-                return (
-                  <div key={idx} className="p-4 border border-gray-700 bg-gray-900">
-                    <div className="text-yellow-400 font-medium flex items-center gap-2">
-                      <HiPencilAlt className="text-xl" />
-                      Quiz: {block.title}
-                    </div>
-                    <div className="text-sm text-gray-400">
-                      Questions: {block.questions?.length || 0}
-                    </div>
-                  </div>
-                )
-              }
-            })}
-          </div>
+          <ChooseBlock course={course} />
         </div>
 
         <div className="flex justify-center items-center mt-3">

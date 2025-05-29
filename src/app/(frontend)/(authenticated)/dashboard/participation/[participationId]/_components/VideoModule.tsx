@@ -16,6 +16,8 @@ export default function VideoModule({
 }) {
   const [loading, setLoading] = useState(false)
 
+  console.log('module?.playerUrl', module?.playerUrl)
+
   async function handleNextModule() {
     setLoading(true)
     try {
@@ -38,7 +40,7 @@ export default function VideoModule({
 
       <div className="relative w-full aspect-video border border-white overflow-hidden">
         <iframe
-          src={`${module.playerUrl}`}
+          src={`${module?.playerUrl}`}
           style={{ border: 'none', position: 'absolute', top: 0, height: '100%', width: '100%' }}
           allow="accelerometer; gyroscope; encrypted-media; picture-in-picture;"
           allowFullScreen

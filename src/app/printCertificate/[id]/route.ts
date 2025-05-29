@@ -25,7 +25,11 @@ export async function GET(req: NextRequest, { params }: any) {
       return new Response('Unauthorized', { status: 401 })
     }
 
-    const participationId = params.id
+    const participationt = await params
+
+    const participationId = participationt.id
+
+    console.log('participationId', participationId)
 
     const participation: Participation = await payload.findByID({
       collection: 'participation',
@@ -67,7 +71,7 @@ export async function GET(req: NextRequest, { params }: any) {
 
       const pdfResponse = await axios({
         method: 'post',
-        url: 'https://rapidapi.windypdf.com/convert',
+        url: 'https://windypdf.p.rapidapi.com/convert',
         data: {
           landscape: false,
           html,
@@ -75,8 +79,9 @@ export async function GET(req: NextRequest, { params }: any) {
           tailwind: true,
         },
         headers: {
+          'x-rapidapi-key': `${process.env.WINDYPDF_API_KEY}`,
+          'x-rapidapi-host': 'windypdf.p.rapidapi.com',
           'Content-Type': 'application/json',
-          'api-secret': `${process.env.WINDYPDF_API_KEY}`,
         },
         responseType: 'stream',
       })
