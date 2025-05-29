@@ -45,7 +45,7 @@ export const Courses: CollectionConfig = {
     },
     {
       name: 'dowload',
-      label: 'Download',
+      label: 'Download (PDF)',
       type: 'relationship',
       relationTo: 'media',
       required: false,

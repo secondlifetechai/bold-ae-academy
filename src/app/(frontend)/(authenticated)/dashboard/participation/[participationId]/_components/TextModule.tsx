@@ -55,10 +55,10 @@ export default function TextModule({
         <Tabs defaultValue="content" className="">
           <TabsList className="self-center bg-[#002157]">
             <TabsTrigger value="content" className="cursor-pointer">
-              Content
+              Contenu
             </TabsTrigger>
             <TabsTrigger value="download" className="cursor-pointer">
-              Download
+              Télécharger
             </TabsTrigger>
           </TabsList>
           <TabsContent value="content">
