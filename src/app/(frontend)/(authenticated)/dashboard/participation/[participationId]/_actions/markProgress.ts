@@ -4,6 +4,7 @@ import { Participation } from '@/payload-types'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import { getUser } from '@/app/(frontend)/(authenticated)/_actions/getUser'
+import { revalidatePath } from 'next/cache'
 
 export async function markProgress(participation: Participation) {
   const payload = await getPayload({ config: configPromise })
@@ -29,5 +30,6 @@ export async function markProgress(participation: Participation) {
     overrideAccess: false,
   })
 
+  revalidatePath(`/dashboard/participation/${participation.id}`)
   return updatedParticipation
 }
