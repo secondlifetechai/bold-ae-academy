@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import NextButton from './NextButton'
 import { RichText } from '@/components/RichText'
+import DownloadButton from '../../../course/[courseId]/_components/DownloadButton'
 
 export default function TextModule({
   module,
@@ -14,11 +15,13 @@ export default function TextModule({
   onCompleted,
 }: {
   module: any
-  participation: Participation
+  participation: any
   onCompleted: (nextIndex: number) => void
 }) {
   const [loading, setLoading] = useState(false)
   const [current, setCurrent] = useState(0)
+
+  const downloadMedia = participation?.course?.download
 
   async function handleNextModule() {
     setLoading(true)
@@ -40,8 +43,13 @@ export default function TextModule({
     const lnt = module?.topics?.length - 1
     if (current < lnt) {
       setCurrent(current + 1)
-    } else {
-      setCurrent(0)
+    }
+  }
+
+  function handleNextCurrent() {
+    const lnt = module?.topics?.length - 1
+    if (current > 0) {
+      setCurrent(current - 1)
     }
   }
 
@@ -77,7 +85,14 @@ export default function TextModule({
               )
             })}
 
-            <div className="flex justify-center items-center">
+            <div className="flex justify-center gap-24 items-center">
+              <Button
+                onClick={handleNextCurrent}
+                className="py-2 px-6 text-xl font-bold text-center text-slate-300 rounded-lg bg-[#002157] hover:bg-[#0021578f] mt-2 cursor-pointer"
+              >
+                Précédente
+              </Button>
+
               <Button
                 onClick={handleCurrent}
                 className="py-2 px-6 text-xl font-bold text-center text-slate-300 rounded-lg bg-[#002157] hover:bg-[#0021578f] mt-2 cursor-pointer"
@@ -91,9 +106,12 @@ export default function TextModule({
               className={`flex justify-center items-center bg-[#002157] py-6 px-96 text-gray-300 pb-14 mt-3 h-72 mx-auto`}
             >
               <div className="font-medium text-xl mb-3 text-center">
-                <Button className="py-2 px-6 text-xl font-bold text-center text-slate-300 rounded-lg bg-[#1c316a] hover:bg-[#0021578f] mt-2 cursor-pointer">
-                  Télécharger le cours
-                </Button>
+                {downloadMedia?.url && (
+                  <DownloadButton
+                    url={`${process.env.BASE_URL}${downloadMedia.url}`} // or your production Payload URL
+                    fileName={downloadMedia.filename || 'download.pdf'}
+                  />
+                )}
               </div>
             </div>
           </TabsContent>
