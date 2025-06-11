@@ -40,15 +40,15 @@ export default function VideoModule({
 
       <div className="relative w-full aspect-video border border-white overflow-hidden">
         <iframe
-          src={`${module?.playerUrl}`}
+          src="https://www.youtube.com/embed/71tZswWCJek?si=WzP7e__eFsKmAUBO"
           style={{ border: 'none', position: 'absolute', top: 0, height: '100%', width: '100%' }}
-          allow="accelerometer; gyroscope; encrypted-media; picture-in-picture;"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
-          data-card-controls="1" // helps override Embedly defaults
+          data-card-controls="1"
         />
       </div>
 
-      <NextButton loading={loading} text="Next" onClick={handleNextModule} />
+      <NextButton loading={loading} text="Section suivante" onClick={handleNextModule} />
     </div>
   )
 }

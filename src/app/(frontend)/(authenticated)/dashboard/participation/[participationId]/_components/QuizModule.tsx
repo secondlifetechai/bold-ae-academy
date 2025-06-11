@@ -26,7 +26,7 @@ export default function QuizModule({
     { label: 'A', color: 'text-whhite' },
     { label: 'B', color: 'text-blue-800' },
     { label: 'C', color: 'text-red-800' },
-    { label: 'D', color: 'text-green-800' },
+    { label: 'A', color: 'text-whhite' },
   ]
 
   useEffect(() => {

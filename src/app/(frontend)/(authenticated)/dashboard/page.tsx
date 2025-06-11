@@ -79,7 +79,7 @@ const page = async () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
           <Suspense fallback={<div>Loading...</div>}>
             {courses?.map((course) => {
-              const img = course?.image?.url
+              //const imgy = course?.image?.url
               return (
                 <Fragment key={course.id}>
                   {course?.curriculum?.length > 0 ? (

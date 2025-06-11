@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { HiArrowLeft } from 'react-icons/hi'
 import CourseViewer from './_components/CourseViewer'
+import ProgressBar from '../../_components/ProgressBar'
 
 export default async function ParticipationPage({ params }: any) {
   const payload = await getPayload({ config: configPromise })
@@ -36,7 +37,10 @@ export default async function ParticipationPage({ params }: any) {
   if (!participation) return notFound()
 
   return (
-    <section className="overflow-hidden bg-[#1c316a] pt-16 md:pt-12 pb-16 text-gray-300">
+    <section
+      className="overflow-hidden bg-[#1c316a] pt-16 md:pt-12 pb-16 text-gray-300"
+      suppressHydrationWarning={true}
+    >
       <div className="px-8 max-w-7xl pt-6 md:pt-12 mx-auto">
         <div>
           <Link
@@ -47,6 +51,8 @@ export default async function ParticipationPage({ params }: any) {
             Retour au tableau de bord
           </Link>
         </div>
+
+        <ProgressBar participation={participation} />
 
         <div className="flex flex-col gap-3 justify-center items-center pt-6">
           <strong className="text-slate-300 text-xl">{participation.course.title}</strong>

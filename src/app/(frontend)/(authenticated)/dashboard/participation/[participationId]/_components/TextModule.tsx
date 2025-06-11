@@ -1,7 +1,6 @@
 'use client'
 
-import { Participation } from '@/payload-types'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { markProgress } from '../_actions/markProgress'
 import { Button } from '@/components/ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
@@ -18,8 +17,13 @@ export default function TextModule({
   participation: any
   onCompleted: (nextIndex: number) => void
 }) {
+  const [isClient, setIsClient] = useState(false)
   const [loading, setLoading] = useState(false)
   const [current, setCurrent] = useState(0)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
 
   const downloadMedia = participation?.course?.download
 
@@ -51,6 +55,18 @@ export default function TextModule({
     if (current > 0) {
       setCurrent(current - 1)
     }
+  }
+
+  if (!isClient) {
+    return (
+      <section className="overflow-hidden bg-[#1c316a] pb-3">
+        <div className="flex flex-col gap-3 justify-center items-center pt-5">
+          <div className="text-gray-300 font-semibold text-3xl border-b-2 border-b-gray-300 pb-2">
+            LOADING...
+          </div>
+        </div>
+      </section>
+    )
   }
 
   return (
