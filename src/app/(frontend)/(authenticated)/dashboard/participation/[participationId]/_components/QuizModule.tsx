@@ -85,18 +85,16 @@ export default function QuizModule({
   }
 
   async function handleNextQuestion() {
-    setLoading(true)
-    try {
-      const lnt = module?.questions?.length - 1
-      if (current < lnt) {
-        setCurrent(current + 1)
-      } else {
-        setCurrent(0)
-      }
-    } catch (error) {
-      console.error('Error moving next:', error)
-    } finally {
-      setLoading(false)
+    const lnt = module?.questions?.length - 1
+    if (current < lnt) {
+      setCurrent(current + 1)
+    }
+  }
+
+  function handlePrevQuestion() {
+    const lnt = module?.topics?.length - 1
+    if (current > 0) {
+      setCurrent(current - 1)
     }
   }
 
@@ -144,7 +142,14 @@ export default function QuizModule({
           )
         })}
 
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center gap-24 items-center">
+          <Button
+            onClick={handlePrevQuestion}
+            className="py-2 px-6 text-xl font-bold text-center text-slate-300 rounded-lg bg-[#002157] hover:bg-[#0021578f] mt-2 cursor-pointer"
+          >
+            Précédente
+          </Button>
+
           <Button
             onClick={handleNextQuestion}
             className="py-2 px-6 text-xl font-bold text-center text-slate-300 rounded-lg bg-[#002157] hover:bg-[#0021578f] mt-2 cursor-pointer"
